@@ -1,10 +1,14 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:login/constants/colors.dart';
 import 'package:login/constants/metrics.dart';
 import 'package:login/constants/styles.dart';
 import 'package:login/screens/login/login.dart';
+import 'package:login/screens/onboarding/button_next.dart';
 import 'package:login/screens/onboarding/description.dart';
 import 'package:login/screens/onboarding/indicator.dart';
+import 'package:login/screens/onboarding/indicator_area.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -25,6 +29,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _onPressNext() {
+    print("aaa");
     if (_currentIndex < totalPage - 1) {
       _pageController.nextPage(
           duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
@@ -35,6 +40,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       );
     }
   }
+
 
   void _onPressSkip() {
     Navigator.push(
@@ -56,35 +62,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       children: [
         OnboardingDescription(
             pageController: _pageController, onPageChanged: _onPageChanged),
-        Positioned(
-            bottom: LoginMetrics.s_20 * 2,
-            child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: LoginMetrics.s_20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    OnboardingIndicator(
-                        currentIndex: _currentIndex, itemCount: totalPage),
-                    // const SizedBox(height: LoginMetrics.s_16),
-                    TextButton(
-                        onPressed: _onPressSkip,
-                        style: TextButton.styleFrom(
-                            padding: EdgeInsets.zero, minimumSize: Size.zero),
-                        child: Text("Skip",
-                            style: LoginTextStyles.buttonText
-                                .copyWith(color: LoginColors.white))),
-                  ],
-                ))),
-        Positioned(
-          bottom: LoginMetrics.s_20 * 2,
-          right: 0,
-          child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: LoginMetrics.s_20),
-              child: ElevatedButton(
-                  onPressed: _onPressNext,
-                  child: const Icon(Icons.add_ic_call_outlined))),
+        OnboardingIndicatorArea(
+            currentIndex: _currentIndex,
+            totalPage: totalPage,
+            onPressSkip: _onPressSkip),
+        OnboardingButtonNext(
+          currentIndex: _currentIndex,
+          totalPage: totalPage,
+          onPressNext: _onPressNext
         )
       ],
     ));

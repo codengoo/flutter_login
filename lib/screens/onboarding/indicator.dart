@@ -14,9 +14,11 @@ class OnboardingIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: List.generate(4, (index) {
-        return Opacity(
+        return AnimatedOpacity(
             opacity: index == currentIndex ? 1 : 0.5,
-            child: Container(
+            duration: const Duration(milliseconds: 300),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
               margin: EdgeInsets.symmetric(horizontal: spacing),
               width: index == currentIndex ? size * 3 : size,
               height: size,
