@@ -4,7 +4,7 @@ flutter_native_splash:
 
   color: "#FFFFFF"
   #background_image: "assets/background.png"
-  #image: assets/splash.png
+  image: assets/splash.png
 
   # branding: assets/branch.png
   # branding_mode: center
@@ -17,7 +17,7 @@ flutter_native_splash:
 
   android_12:
     color: "#FFFFFF"
-    #image: assets/android12splash.png
+    image: assets/splash.png
     #icon_background_color: "#111111"
     #branding: assets/branch.png
     #image_dark: assets/android12splash-invert.png
