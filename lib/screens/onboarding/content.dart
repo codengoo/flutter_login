@@ -1,17 +1,38 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:login/constants/colors.dart';
+import 'package:login/constants/metrics.dart';
+import 'package:login/constants/styles.dart';
+import 'package:login/screens/onboarding/data.dart';
 
 class OnboardingContent extends StatelessWidget {
-  const OnboardingContent({super.key});
+  final OnboardingDataType onboardingData;
+  final Color color;
+
+  const OnboardingContent(
+      {super.key, required this.onboardingData, required this.color});
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        Text('Welcome to Our App',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-        Text('This is an onboarding screen', style: TextStyle(fontSize: 18, fontFamily: "SFDisplay")),
-        SizedBox(height: 20),
-      ],
-    );
+    return Container(
+        color: color,
+        child: SafeArea(
+            child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(LoginMetrics.s_20),
+              child: Column(
+                children: [
+                  Text(onboardingData.title, style: LoginTextStyles.titleStyle),
+                  const SizedBox(height: LoginMetrics.s_16),
+                  Text(onboardingData.description,
+                      style: LoginTextStyles.description
+                          .copyWith(color: LoginColors.white),
+                      softWrap: true),
+                ],
+              ),
+            ),
+            Image(image: AssetImage(onboardingData.image))
+          ],
+        )));
   }
 }
