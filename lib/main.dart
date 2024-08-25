@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:login/screens/onboarding/onboarding.dart';
-import 'package:login/utils/helper.dart';
+import 'package:login/routing.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  FlutterNativeSplash.remove();
   // Hide status bar
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: [SystemUiOverlay.bottom]);
   runApp(const MainApp());
 }
 
@@ -18,10 +17,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Metrics.init(context);
     return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: OnboardingScreen(),
-    );
+        debugShowCheckedModeBanner: false, home: RoutingScreen());
   }
 }

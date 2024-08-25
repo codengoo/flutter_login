@@ -5,6 +5,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text("Login"));
+    return const Center(child: Text("Login"));
   }
 }
